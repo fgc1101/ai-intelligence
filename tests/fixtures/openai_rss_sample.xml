@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[OpenAI News]]></title>
+        <description><![CDATA[The OpenAI blog]]></description>
+        <link>https://openai.com/news</link>
+        <generator>OpenAI</generator>
+        <lastBuildDate>Fri, 08 May 2026 15:34:39 GMT</lastBuildDate>
+        <atom:link href="https://openai.com/news/rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber]]></title>
+            <description><![CDATA[OpenAI expands Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber, helping verified defenders accelerate vulnerability research and protect critical infrastructure.]]></description>
+            <link>https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber</link>
+            <guid isPermaLink="true">https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber</guid>
+            <category><![CDATA[Security]]></category>
+            <pubDate>Thu, 07 May 2026 13:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Introducing GPT-5.5]]></title>
+            <description><![CDATA[GPT-5.5 is our most capable model yet, with improved reasoning, longer context, and native multimodal support.]]></description>
+            <link>https://openai.com/index/introducing-gpt-5-5</link>
+            <guid isPermaLink="true">https://openai.com/index/introducing-gpt-5-5</guid>
+            <category><![CDATA[Product]]></category>
+            <pubDate>Thu, 23 Apr 2026 11:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Introducing ChatGPT Images 2.0]]></title>
+            <description><![CDATA[ChatGPT Images 2.0 brings higher quality image generation with better text rendering and photorealistic outputs.]]></description>
+            <link>https://openai.com/index/introducing-chatgpt-images-2-0</link>
+            <guid isPermaLink="true">https://openai.com/index/introducing-chatgpt-images-2-0</guid>
+            <category><![CDATA[Product]]></category>
+            <pubDate>Tue, 21 Apr 2026 12:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Introducing workspace agents in ChatGPT]]></title>
+            <description><![CDATA[Workspace agents can now autonomously complete multi-step tasks across your tools and data in ChatGPT.]]></description>
+            <link>https://openai.com/index/introducing-workspace-agents-in-chatgpt</link>
+            <guid isPermaLink="true">https://openai.com/index/introducing-workspace-agents-in-chatgpt</guid>
+            <category><![CDATA[Product]]></category>
+            <pubDate>Wed, 22 Apr 2026 10:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Codex for (almost) everything]]></title>
+            <description><![CDATA[Codex now supports a wider range of programming tasks, from code review to deployment automation.]]></description>
+            <link>https://openai.com/index/codex-for-almost-everything</link>
+            <guid isPermaLink="true">https://openai.com/index/codex-for-almost-everything</guid>
+            <category><![CDATA[Product]]></category>
+            <pubDate>Thu, 16 Apr 2026 10:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Testing ads in ChatGPT]]></title>
+            <description><![CDATA[OpenAI begins testing ads in ChatGPT to support free access, with clear labeling and user control.]]></description>
+            <link>https://openai.com/index/testing-ads-in-chatgpt</link>
+            <guid isPermaLink="true">https://openai.com/index/testing-ads-in-chatgpt</guid>
+            <category><![CDATA[Company]]></category>
+            <pubDate>Thu, 07 May 2026 00:00:00 GMT</pubDate>
+        </item>
+    </channel>
+</rss>

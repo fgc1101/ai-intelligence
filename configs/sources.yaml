@@ -1,0 +1,35 @@
+official:
+  openai:
+    name: "OpenAI News"
+    type: "rss"
+    url: "https://openai.com/blog/rss.xml"
+  anthropic:
+    name: "Anthropic News"
+    type: "rss"
+    url: "https://www.anthropic.com/news"
+  google_ai:
+    name: "Google AI Blog"
+    type: "rss"
+    url: "https://blog.google/technology/ai/rss/"
+  huggingface:
+    name: "HuggingFace Blog"
+    type: "rss"
+    url: "https://huggingface.co/blog/feed.xml"
+  github:
+    name: "GitHub Trending"
+    type: "scrape"
+    url: "https://github.com/trending"
+
+community:
+  hackernews:
+    name: "Hacker News"
+    type: "api"
+    url: "https://hacker-news.firebaseio.com/v0"
+  reddit_localllama:
+    name: "Reddit LocalLLaMA"
+    type: "rss"
+    url: "https://www.reddit.com/r/LocalLLaMA/.rss"
+  reddit_openai:
+    name: "Reddit OpenAI"
+    type: "rss"
+    url: "https://www.reddit.com/r/OpenAI/.rss"
