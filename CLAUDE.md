@@ -1,61 +1,61 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+本文件为 Claude Code (claude.ai/code) 提供项目指导。
 
-## Project Overview
+## 项目概述
 
-AI Intelligence — an "AI intelligence editor" that automatically collects, filters, summarizes, and publishes AI industry news in plain language for a Chinese-speaking audience.
+AI Intelligence —— 一个"AI 情报编辑器"，面向中文读者，自动采集、筛选、总结并发布 AI 行业动态。
 
-The core pipeline is: **Collect → Filter → AI Summarize → Translate to plain language → Analyze impact → Auto-publish**
+核心流水线：**采集 → 筛选 → AI 总结 → 人话翻译 → 影响分析 → 自动发布**
 
-Product docs: `doc/产品落地.md`, `doc/目录结构.md`
+产品文档：`doc/产品落地.md`、`doc/目录结构.md`
 
-## Architecture
+## 目录结构
 
 ```
-sources/          Data crawlers — each source has its own directory
-  official/       OpenAI, Anthropic, Google AI, HuggingFace, GitHub
-  community/      Reddit, HackerNews, Twitter, etc.
-pipelines/        Data processing pipelines (collect, clean, summarize, classify, publish)
-ai/               AI layer — isolated from business code
-  llm/            LLM clients + router (use LiteLLM for unified interface)
-  prompts/        Prompt templates
-  tasks/          AI tasks: summarize, explain, tagging, scoring, trend_analysis
-storage/          Raw data retention (critical — never discard originals)
+sources/          数据采集 —— 每个数据源独立目录
+  official/       官方源（OpenAI、Anthropic、Google AI、HuggingFace、GitHub）
+  community/      社区源（Reddit、HackerNews、Twitter 等）
+pipelines/        数据处理流水线（采集、清洗、总结、分类、发布）
+ai/               AI 处理层 —— 与业务代码隔离
+  llm/            LLM 客户端 + 路由（通过 LiteLLM 统一接口）
+  prompts/        Prompt 模板
+  tasks/          AI 任务：总结、解读、标签、评分、趋势分析
+storage/          原始数据存储（始终保留原文，切勿丢弃）
   raw/ cleaned/ summarized/ published/
-configs/          settings.py, sources.yaml, prompt text files
-database/         SQLite models and migrations
-scripts/          CLI entry points (run_daily.py, rebuild_summary.py, etc.)
-services/         Business logic (article, ranking, trend, digest)
-publishing/       Output adapters (Telegram, WeChat, email, markdown)
+configs/          配置中心（settings.py、sources.yaml）
+database/         SQLite 数据模型与迁移
+scripts/          脚本入口（run_daily.py、rebuild_summary.py 等）
+services/         业务逻辑（文章、排行、趋势、日报）
+publishing/       发布适配器（Telegram、微信公众号、邮件、Markdown）
 ```
 
-Key separation: **sources only fetch**, **pipelines only process**, **AI layer only calls LLMs**. Never mix these responsibilities.
+核心职责分离：**数据源只负责采集**，**流水线只负责处理**，**AI 层只负责调用 LLM**。严禁混用职责。
 
-## Tech Stack
+## 技术栈
 
-- Python, FastAPI, APScheduler, SQLite
-- `feedparser`, `requests`, `beautifulsoup4`, `playwright` for crawling
-- LiteLLM for unified LLM interface (OpenAI, Claude, Gemini)
-- `pip install -r requirements.txt`
+- Python、FastAPI、APScheduler、SQLite
+- 爬虫：`feedparser`、`requests`、`beautifulsoup4`、`playwright`
+- LLM 调用：LiteLLM 统一接口（OpenAI、Claude、Gemini）
+- 安装依赖：`pip install -r requirements.txt`
 
-## Data Flow
+## 数据流
 
 ```
-crawler → raw JSON → clean pipeline → AI summarize → daily digest → Telegram
+爬虫 → 原始 JSON → 清洗流水线 → AI 总结 → 每日日报 → Telegram
 ```
 
-## Content Rules
+## 内容筛选规则
 
-- Only ~5% of daily AI news is worth reporting
-- Worth reporting: AI capability changes, real industry impact, viral community signals
-- Not worth reporting: funding announcements, minor benchmark bumps, marketing
-- Content template: (1) what happened, (2) plain-language explanation, (3) who it affects, (4) future trend
-- Titles in plain language, never raw technical jargon
+- 每天约 5% 的 AI 新闻值得报道
+- 值得报道：AI 能力变化、行业实际影响、社区爆火信号
+- 不值得报道：融资新闻、小幅 benchmark 提升、营销软文
+- 内容模板：(1) 发生了什么、(2) 人话解释、(3) 会影响谁、(4) 未来趋势
+- 标题必须用大白话，禁止使用技术黑话
 
-## Design Constraints
+## 设计约束
 
-- No user system, no login, no comments, no social features in MVP
-- Raw article data must always be preserved in `storage/raw/` (needed for re-running with new prompts/models)
-- All LLM calls go through `ai/llm/router.py` — never call OpenAI/Claude directly in business code
-- Source config lives in `configs/sources.yaml`
+- MVP 阶段不做用户系统、登录、评论、社交功能
+- 原始文章数据必须始终保留在 `storage/raw/`（更换 Prompt/模型后需要重跑）
+- 所有 LLM 调用统一通过 `ai/llm/router.py` —— 业务代码禁止直接调用 OpenAI/Claude
+- 数据源配置集中在 `configs/sources.yaml`

@@ -1,10 +1,9 @@
 import json
-from datetime import datetime, timezone
-from pathlib import Path
+from datetime import datetime
 
 import requests
 
-from configs.settings import PUBLISHED_DIR, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+from configs.settings import PUBLISHED_DIR, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, TZ_CN
 
 TELEGRAM_API = "https://api.telegram.org/bot{token}/sendMessage"
 MAX_MSG_LEN = 4000
@@ -22,7 +21,7 @@ def format_digest(articles: list[dict]) -> str:
         lines.append(f"未来趋势：{a.get('future_trend', '')}")
         lines.append(f"[原文链接]({a.get('url', '')})")
         lines.append("---")
-    date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    date_str = datetime.now(TZ_CN).strftime("%Y-%m-%d")
     lines.append(f"共 {len(articles)} 条情报 | {date_str}")
     return "\n".join(lines)
 
@@ -78,7 +77,7 @@ def publish_digest(articles: list[dict], source: str) -> bool:
         if not send_telegram(msg):
             success = False
     # Save published record
-    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    ts = datetime.now(TZ_CN).strftime("%Y%m%d_%H%M%S")
     out_dir = PUBLISHED_DIR / source
     out_dir.mkdir(parents=True, exist_ok=True)
     path = out_dir / f"{ts}.json"

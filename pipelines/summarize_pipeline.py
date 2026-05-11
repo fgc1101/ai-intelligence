@@ -1,10 +1,10 @@
 import json
-from datetime import datetime, timezone
+from datetime import datetime
 from pathlib import Path
 
 from ai.tasks.analyze import analyze_impact
 from ai.tasks.summarize import summarize_article
-from configs.settings import CLEANED_DIR, SUMMARIZED_DIR
+from configs.settings import CLEANED_DIR, SUMMARIZED_DIR, TZ_CN
 
 
 def load_cleaned(source: str, storage_dir: Path = CLEANED_DIR) -> list[dict]:
@@ -38,7 +38,7 @@ def process_article(article: dict) -> dict:
 
 
 def save_summarized(articles: list[dict], source: str, storage_dir: Path = SUMMARIZED_DIR) -> Path:
-    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    ts = datetime.now(TZ_CN).strftime("%Y%m%d_%H%M%S")
     out_dir = storage_dir / source
     out_dir.mkdir(parents=True, exist_ok=True)
     path = out_dir / f"{ts}.json"

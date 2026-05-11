@@ -8,6 +8,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from pipelines.clean_pipeline import clean_pipeline
 from pipelines.collect_pipeline import save_raw
 from pipelines.summarize_pipeline import summarize_pipeline
+from publishing.email import send_email
 from publishing.telegram import publish_digest
 from sources.official.openai.crawler import OpenAICrawler
 
@@ -41,8 +42,8 @@ def main():
 
     # Step 4: Publish
     print("[4/4] Publishing...")
-    success = publish_digest(summarized, source)
-    print("  Done!" if success else "  Publish failed!")
+    send_email(summarized)
+    publish_digest(summarized, source)
 
 
 if __name__ == "__main__":
